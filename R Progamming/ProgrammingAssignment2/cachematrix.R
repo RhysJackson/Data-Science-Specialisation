@@ -1,6 +1,7 @@
 ## Pair of functions for solving and caching the inverse of a matrix
-## The makeChacheMatrix function creates a special matrix with set/get methods
-## The solver function either solves or retrieves the cached results for the inverse of the matrix input
+## makeCacheMatrix is a maker function that returns a 'special matrix' with set/get methods
+## The cacheSolve function requires a return value from the makeCacheMatrix function
+## The cacheSolve function then either solves the inverse or retrieves cached results for the provided matrix
 
 set.seed(1)
 myMatrix <- replicate(3, rnorm(3))
