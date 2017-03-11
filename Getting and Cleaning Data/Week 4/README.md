@@ -48,8 +48,8 @@ getDataset <- function(type) {
   colnames(X) <- feature_names$V2
   
   # Read activity data
-  Y <- read.table(file = paste0("UCI HAR Dataset/", type, "/Y_", type, ".txt"), header = F)
-  X$activity_label <- Y$V1
+  y <- read.table(file = paste0("UCI HAR Dataset/", type, "/y_", type, ".txt"), header = F)
+  X$activity_label <- y$V1
   
   # Read Subject data
   subject <- read.table(file = paste0("UCI HAR Dataset/", type, "/subject_", type, ".txt"), header = F)
