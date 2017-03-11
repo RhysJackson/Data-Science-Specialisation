@@ -1,5 +1,7 @@
 library(dplyr)
 
+### PREPARE FUNCTIONS ###
+
 # Accepts a data frame and regex expression
 # Return a data frame containing only columns that match the regex expression
 removeColumns <- function(df, regex) {
@@ -35,8 +37,8 @@ getDataset <- function(type) {
   colnames(X) <- feature_names$V2
   
   # Read activity data
-  Y <- read.table(file = paste0("UCI HAR Dataset/", type, "/Y_", type, ".txt"), header = F)
-  X$activity_label <- Y$V1
+  y <- read.table(file = paste0("UCI HAR Dataset/", type, "/y_", type, ".txt"), header = F)
+  X$activity_label <- y$V1
   
   # Read Subject data
   subject <- read.table(file = paste0("UCI HAR Dataset/", type, "/subject_", type, ".txt"), header = F)
@@ -45,6 +47,9 @@ getDataset <- function(type) {
   # Return data frame
   return(X)
 }
+
+
+### PROCESS DATA ###
 
 # Create complete test dataset
 testData <- getDataset("test")
@@ -56,7 +61,7 @@ trainData <- getDataset("train")
 combinedDataset <- rbind(testData, trainData)
 
 # Filter dataset to include only means, standard deviations, activity labels and subject labels
-mergedDataset.filtered <- removeColumns(mergedDataset, "(mean\\(\\)|std\\(\\)|activity_label|subject)")
+mergedDataset.filtered <- removeColumns(mergedDataset, "(mean|std|activity_label|subject)")
 
 # Merge descriptive activity labels
 mergedDataset.filtered <- addLabels(mergedDataset.filtered)
@@ -66,3 +71,5 @@ summary <- mergedDataset.filtered %>%
   group_by(subject, activity, activity_label) %>%
   summarise_all(mean) %>%
   arrange(subject, activity_label)
+
+write.table(x = summary, file = "tidy_summary.txt", row.names = F)
