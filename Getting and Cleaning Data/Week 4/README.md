@@ -100,6 +100,8 @@ addLabels <- function(df) {
   labels <- read.table("UCI HAR Dataset/activity_labels.txt", col.names = c("activity_label", "activity" ))
   return(merge(df, labels))
 }
+# Merge descriptive activity labels
+mergedDataset.filtered <- addLabels(mergedDataset.filtered)
 ````
 
 Finally, the labelled data are then summarised using the ````dplyr```` package, specifically, the ````dplyr::group_by()```` and ````dplyr::summarise_all()```` functions.
