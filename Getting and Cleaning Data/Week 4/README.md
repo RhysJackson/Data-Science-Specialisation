@@ -82,7 +82,7 @@ removeColumns <- function(df, regex) {
   return(df[, grep(regex, colnames(df))])
 }
 # Filter dataset to include only means, standard deviations, activity labels and subject labels
-mergedDataset.filtered <- removeColumns(mergedDataset, "(mean\\(\\)|std\\(\\)|activity_label|subject)")
+mergedDataset.filtered <- removeColumns(mergedDataset, "(mean|std|activity_label|subject)")
 ````
 
 The descriptive activity labels are then merged with the filtered dataset by using the ````addLabels()```` function.
@@ -108,6 +108,7 @@ The summary is then saved to ````tidy_summary.txt```` using the ````write.table(
 ````R
 # Create sumarised dataset
 library(dplyr)
+# Create sumarised dataset
 summary <- mergedDataset.filtered %>%
   group_by(subject, activity, activity_label) %>%
   summarise_all(mean) %>%
