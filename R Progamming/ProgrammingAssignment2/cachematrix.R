@@ -40,7 +40,7 @@ cacheSolve <- function(x, ...) {
 # Pass a matrix to the makeCacheMatrix function to create a cacheable matrix
 cacheableMatrix <- makeCacheMatrix(myMatrix)
 
-# Pass the cacheable matric to cacheSolve.
+# Pass the cacheable matrix to cacheSolve.
 # Inverse is not yet been solved, so is calculated and cached 
 cacheSolve(cacheableMatrix)
 
