@@ -30,5 +30,10 @@ vignettes/*.pdf
 
 # Temporary files created by R markdown
 *.utf8.md
+<<<<<<< HEAD
 *.knit.md
-Exploratory Data Analysis/ExData_Plotting1/household_power_consumption.txt
+Exploratory Data Analysis/Week 1/household_power_consumption.txt
+Exploratory Data Analysis/Week 1/household_power_consumption.txt
+=======
+*.knit.md
+>>>>>>> parent of f3721b3... Exploratory Data Analysis - Week 1
