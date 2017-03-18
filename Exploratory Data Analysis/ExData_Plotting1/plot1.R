@@ -1,4 +1,3 @@
-
 if(!file.exists("household_power_consumption.txt")) {
   data_location <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
   download.file(data_location, destfile = "household_power_consumption.zip")
@@ -6,13 +5,14 @@ if(!file.exists("household_power_consumption.txt")) {
   file.remove("household_power_consumption.zip")
 }
 
-power_consumption <- read.csv("household_power_consumption.txt", sep = ";", na.strings = "?")
+power_consumption <- read.table("household_power_consumption.txt", sep = ";", na.strings = "?", header = T)
 power_consumption$Date <- as.Date(power_consumption$Date, format = "%d/%m/%Y")
-power_consumption$Time <- strptime(power_consumption$Time, format = "%H:%M:%S")
 
+pwr.filtered <- power_consumption[(power_consumption$Date >= as.Date("2007-02-01")) & (power_consumption$Date <= as.Date("2007-02-02")), ]
 
-hist(as.numeric(power_consumption$Global_active_power), breaks = 10,
-     freq = T,
-     main = "Global Active Power",
-     xlab = "Global Active Power (Kilowatts)",
-     col = "red")
+png(filename = "plot1.png", width = 480, height = 480, units = "px", bg = "transparent")
+with(pwr.filtered, hist(x = Global_active_power,
+                        xlab = "",
+                        ylab = "",
+                        col = "red"))
+dev.off()

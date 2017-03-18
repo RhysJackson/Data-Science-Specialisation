@@ -31,3 +31,4 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+Exploratory Data Analysis/ExData_Plotting1/household_power_consumption.txt
